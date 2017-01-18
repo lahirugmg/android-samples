@@ -427,7 +427,7 @@ public class Camera2VideoFragment extends Fragment
             if (!mCameraOpenCloseLock.tryAcquire(2500, TimeUnit.MILLISECONDS)) {
                 throw new RuntimeException("Time out waiting to lock camera opening.");
             }
-            String cameraId = manager.getCameraIdList()[0];
+            String cameraId = manager.getCameraIdList()[1];
 
             // Choose the sizes for camera preview and video recording
             CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
@@ -574,18 +574,14 @@ public class Camera2VideoFragment extends Fragment
         if (null == activity) {
             return;
         }
-        mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+//        mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE);
         mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-        if (mNextVideoAbsolutePath == null || mNextVideoAbsolutePath.isEmpty()) {
-            mNextVideoAbsolutePath = getVideoFilePath(getActivity());
-        }
         mMediaRecorder.setOutputFile(mNextVideoAbsolutePath);
         mMediaRecorder.setVideoEncodingBitRate(10000000);
         mMediaRecorder.setVideoFrameRate(30);
         mMediaRecorder.setVideoSize(mVideoSize.getWidth(), mVideoSize.getHeight());
         mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
-        mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
         int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
         switch (mSensorOrientation) {
             case SENSOR_ORIENTATION_DEFAULT_DEGREES:
@@ -598,10 +594,6 @@ public class Camera2VideoFragment extends Fragment
         mMediaRecorder.prepare();
     }
 
-    private String getVideoFilePath(Context context) {
-        return context.getExternalFilesDir(null).getAbsolutePath() + "/"
-                + System.currentTimeMillis() + ".mp4";
-    }
 
     private void startRecordingVideo() {
         if (null == mCameraDevice || !mTextureView.isAvailable() || null == mPreviewSize) {
