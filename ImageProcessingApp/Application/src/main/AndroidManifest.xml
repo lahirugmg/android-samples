@@ -35,7 +35,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.lahiru.imageprocessingapp.example.android.hdrviewfinder.HdrViewfinderActivity"
+            android:name="com.lahiru.imageprocessingapp.example.android.hdrviewfinder.ImageProcessingActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
                 android:theme="@style/Theme.AppCompat.Light">

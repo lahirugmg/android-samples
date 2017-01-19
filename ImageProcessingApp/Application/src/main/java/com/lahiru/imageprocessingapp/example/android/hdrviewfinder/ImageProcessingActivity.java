@@ -87,7 +87,7 @@ import java.util.List;
  * Android {@link android.view.Surface} class, which allows for zero-copy transport of large
  * buffers between processes and subsystems.</p>
  */
-public class HdrViewfinderActivity extends AppCompatActivity implements
+public class ImageProcessingActivity extends AppCompatActivity implements
         SurfaceHolder.Callback, CameraOps.ErrorDisplayer, CameraOps.CameraReadyListener {
 
     private static final String TAG = "HdrViewfinderDemo";
@@ -313,7 +313,7 @@ public class HdrViewfinderActivity extends AppCompatActivity implements
                         @Override
                         public void onClick(View view) {
                             // Request Camera permission
-                            ActivityCompat.requestPermissions(HdrViewfinderActivity.this,
+                            ActivityCompat.requestPermissions(ImageProcessingActivity.this,
                                     new String[]{Manifest.permission.CAMERA},
                                     REQUEST_PERMISSIONS_REQUEST_CODE);
                         }
@@ -324,7 +324,7 @@ public class HdrViewfinderActivity extends AppCompatActivity implements
             // Request Camera permission. It's possible this can be auto answered if device policy
             // sets the permission in a given state or the user denied the permission
             // previously and checked "Never ask again".
-            ActivityCompat.requestPermissions(HdrViewfinderActivity.this,
+            ActivityCompat.requestPermissions(ImageProcessingActivity.this,
                     new String[]{Manifest.permission.CAMERA},
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
